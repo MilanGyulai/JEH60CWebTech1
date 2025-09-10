@@ -1,0 +1,13 @@
+body{
+    background-color:antiquewhite;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    }
+h1  {
+    color: black;
+    text-align: center;
+    }
+
+ul  {
+    list-style-type: circle;
+    }
+footer{}
