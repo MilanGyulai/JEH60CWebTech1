@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Megjelenítési tulajdonság</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .container {
+            background-color: mediumseagreen;
+            margin-bottom: 20px;
+        }
+
+        .box {
+            background-color: mediumorchid;
+            padding: 5px 10px;
+            margin: 5px;
+            color: white;
+        }
+
+        .none .box {
+            display: none;
+        }
+
+        .inline .box {
+            display: inline;
+        }
+
+        .block .box {
+            display: block;
+        }
+
+        .inline-block .box {
+            display: inline-block;
+        }
+
+        .flex {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Megjelenítési tulajdonság</h2>
+
+    <p><strong>display: none:</strong></p>
+    <div class="container none">
+        <div class="box">PTI BSc 1</div>
+        <div class="box">PTI BSc 2</div>
+        <div class="box">PTI BSc 3</div>
+    </div>
+
+    <p><strong>display: inline:</strong></p>
+    <div class="container inline">
+        <div class="box">PTI BSc 1</div>
+        <div class="box">PTI BSc 2</div>
+        <div class="box">PTI BSc 3</div>
+    </div>
+
+    <p><strong>display: block:</strong></p>
+    <div class="container block">
+        <div class="box">PTI BSc 1</div>
+        <div class="box">PTI BSc 2</div>
+        <div class="box">PTI BSc 3</div>
+    </div>
+
+    <p><strong>display: inline-block:</strong></p>
+    <div class="container inline-block">
+        <div class="box">PTI BSc 1</div>
+        <div class="box">PTI BSc 2</div>
+        <div class="box">PTI BSc 3</div>
+    </div>
+
+    <p><strong>display: flex:</strong></p>
+    <div class="container flex">
+        <div class="box">PTI BSc 1</div>
+        <div class="box">PTI BSc 2</div>
+        <div class="box">PTI BSc 3</div>
+    </div>
+</body>
+
+</html>

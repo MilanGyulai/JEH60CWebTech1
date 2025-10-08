@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista készítése</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            padding: 20px;
+        }
+
+        h1 {
+            font-weight: bold;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: flex;
+            gap: 40px;
+        }
+
+        .column {
+            flex: 1;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        ul,
+        ol {
+            margin-top: 5px;
+        }
+
+        .inline-style li {
+            list-style: none;
+            font-weight: bold;
+        }
+
+        .description dt {
+            font-weight: bolder;
+            color: rgb(27, 137, 206);
+        }
+
+        .description dd {
+            margin-left: 20px;
+            color: rgb(27, 137, 206);
+        }
+
+        .embedded {
+            color: fuchsia;
+            font-weight: bold;
+        }
+
+        .roman ol {
+            list-style-type: upper-roman;
+        }
+
+        .uppercase ol {
+            list-style-type: upper-alpha;
+        }
+
+        .control-list {
+            counter-reset: list;
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .control-list li::before {
+            counter-increment: list;
+            content: counter(list) ". ";
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Lista készítése</h1>
+
+    <div class="container">
+
+        <div class="column">
+            <div class="section">
+                <strong>a. Rendezetlen lista</strong>
+                <ul>
+                    <li>piros</li>
+                    <li>kék</li>
+                    <li>sárga</li>
+                    <li>barna</li>
+                </ul>
+                <ul style="list-style-type: square; color: blue; font-weight: bolder;">
+                    <li>sárga</li>
+                    <li>fehér</li>
+                    <li>zöld</li>
+                    <li>kék</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <strong>b. Rendezett lista</strong>
+                <ol>
+                    <li>pink</li>
+                    <li>kék</li>
+                    <li>sárga</li>
+                    <li>barna</li>
+                </ol>
+            </div>
+
+            <div class="section uppercase">
+                <strong>c. Nagybetűk</strong>
+                <ol>
+                    <li>pink</li>
+                    <li>kék</li>
+                    <li>sárga</li>
+                    <li>barna</li>
+                </ol>
+            </div>
+
+            <div class="section roman">
+                <strong>d. Római számok</strong>
+                <ol>
+                    <li>I. ÉVF</li>
+                    <li>II. ÉVF</li>
+                    <li>III. ÉVF</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="column">
+            <div class="section inline-style">
+                <strong>e. Inline style</strong>
+                <ul>
+                    <li style="color: red;">A. Sárga</li>
+                    <li style="color: red;">B. Kék</li>
+                    <li style="color: red;">C. Zöld</li>
+                    <li style="color: red;">D. Pink</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <strong>f. HTML Description Lists</strong>
+                <dl class="description">
+                    <dt>Farkas</dt>
+                    <dd>Kutyaszerű ragadozó emlős</dd>
+                    <dt>Fájl</dt>
+                    <dd>Szöveges állomány</dd>
+                    <dt>Oroszlán</dt>
+                    <dd>Macskaszerű ragadozó emlős<br>Az állatok királya</dd>
+                </dl>
+            </div>
+
+            <div class="section">
+                <strong>g. Embedded HTML lists</strong><br>
+                <span class="embedded">Kedvenc reggeli italaim</span>
+                <ul style="padding-top: 20px; padding-bottom: 20px;">
+                    <li>Kávé</li>
+                    <li>Tea
+                        <ul>
+                            <li>Fekete</li>
+                            <li>Zöld</li>
+                        </ul>
+                    </li>
+                    <li>Tek</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <strong>h. Control List Counting</strong>
+                <ol start="5">
+                    <li>KL</li>
+                    <li>EL</li>
+                    <li>BL</li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
