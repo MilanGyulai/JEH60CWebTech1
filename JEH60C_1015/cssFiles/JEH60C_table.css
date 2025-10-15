@@ -1,0 +1,37 @@
+table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 15%;
+    text-align: center;
+}
+
+th {
+    background-color: #ccc;
+    font-weight: bold;
+    padding: 10px;
+    border: 1px solid #000;
+}
+
+td {
+    border: 1px solid #000;
+    padding: 10px;
+}
+
+.red {
+    background-color: red;
+    color: white;
+}
+
+.yellow {
+    background-color: #ffff99;
+}
+
+.scroll {
+    height: 100px;
+    overflow: auto;
+    display: block;
+}
+
+.center {
+    text-align: justify;
+}

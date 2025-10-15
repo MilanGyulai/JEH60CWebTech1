@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>CSS - állapot alapú hivatkozás</title>
+  <style>
+    body {
+      background-color: #009688; 
+      color: yellow;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .container{
+        display: block;
+    }
+
+    a:link {
+      color: green;
+    }
+
+    a:visited {
+      color: gray;
+    }
+
+    a:hover {
+      color: orange;
+    }
+
+    a:active {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+
+  <h3><strong>CSS - állapot alapján - hivatkozás</strong></h3>
+    <div class="container">
+  <p>
+    Ha még nem látogattuk meg korábban a 
+    <a href="https://www.iit.uni-miskolc.hu/" target="_blank">hivatkozott</a> weboldalt, akkor az alábbi hivatkozás 
+    zöld betűszínnel jelenik meg, egyébként pedig szürke színnel. <br>
+    Ha a hivatkozás fölé visszük a kurzort, 
+    akkor a szín narancssárgára vált, ha pedig a hivatkozásra kattintunk, akkor pirosra.
+  </p>
+</div>
+  <p><a href="https://www.iit.uni-miskolc.hu/" target="_blank">Kattints ide iit.uni-miskolc weblap megnyitásához!</a></p>
+  
+</body>
+</html>

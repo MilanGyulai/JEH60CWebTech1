@@ -1,0 +1,49 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+}
+
+table {
+    margin: 0 auto ;
+    border-collapse: collapse;
+    width: 75%;
+    text-align: center;
+}
+
+caption {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+td {
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.yellow {
+  background-color: #ffeb3b;
+}
+
+.pink {
+  background-color: #f06292;
+}
+
+.blue {
+  background-color: #64b5f6;
+}
+
+.green {
+  background-color: #81c784;
+}
+
+.orange {
+  background-color: #ff7043;
+}
+.day{
+    color: white;
+    background-color: black;
+}
+.head{
+    text-align: center;
+}
