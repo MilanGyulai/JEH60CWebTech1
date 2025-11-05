@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .controls {
+            display:block;
+            grid-template-columns: repeat(6, auto);
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: left;
+        }
+
+        button:hover {
+            background-color: #bdbdbd;
+        }
+
+        .material-symbols-outlined {
+            font-size: 30px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Video</header>
+    <main>
+        <video id="myVideo" width="600" autoplay>
+            <source src="./JEH60C_video.mp4" type="video/mp4">
+            A böngésző nem támogatja a videó lejátszását
+        </video>
+        <br>
+        <div class="controls">
+    <button onclick="playVideo()">▶️ Lejátszás</button>
+    <button onclick="pauseVideo()">⏸️ Szünet</button>
+    <button onclick="togglePlay()">⏯️ Indítás / Leállítás</button>
+    <br>
+
+    <button onclick="mute()">🔇 Néma</button>
+    <button onclick="setVolume(0.2)">🔉 Halk</button>
+    <button onclick="setVolume(1)">🔊 Hangos</button>
+    <br>
+
+    <button onclick="setSpeed(0.25)">🐢 Nagyon lassú</button>
+    <button onclick="setSpeed(0.5)">🐢 Lassú</button>
+    <button onclick="setSpeed(1)">⚙️ Normál</button>
+    <button onclick="setSpeed(1.5)">🚀 Gyorsabb</button>
+    <button onclick="setSpeed(2)">💨 Nagyon gyors</button>
+          </div>
+        </main>
+      
+        <footer>
+          <p>Forrás: <a href="https://www.w3schools.com/html/html5_video.asp" target="_blank">W3Schools HTML5 Video</a></p>
+        </footer>
+      
+        <script>
+          const video = document.getElementById("myVideo");
+      
+          function playVideo() { video.play(); }
+          function pauseVideo() { video.pause(); }
+          function togglePlay() {
+            video.paused ? video.play() : video.pause();
+          }
+      
+          function mute() {
+            video.muted = !video.muted;
+            alert(video.muted ? "Hang kikapcsolva" : "Hang bekapcsolva");
+          }
+          function setVolume(level) {
+            video.volume = level;
+            video.muted = false;
+          }
+      
+          function setSpeed(rate) {
+            video.playbackRate = rate;
+            alert(`Sebesség: ${rate}x`);
+          }
+      
+          function checkEnded() {
+            alert(video.ended ? "A videó befejeződött." : "A videó még tart.");
+          }
+          function showDuration() {
+            alert(`Videó hossza: ${video.duration.toFixed(1)} mp`);
+          }
+          function showCurrentTime() {
+            alert(`Jelenlegi pozíció: ${video.currentTime.toFixed(1)} mp`);
+          }
+        </script>
+</body>
+
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video</title>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            align-items: center;
+        }
+
+        button {
+            background-color: rgb(59, 177, 255);
+            border: simple;
+            border-color: black;
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 24px;
+            transition: background 0.3s;
+        }
+
+        .controls {
+            display: grid;
+            grid-template-columns: repeat(6, auto);
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+
+        button:hover {
+            background-color: #bdbdbd;
+        }
+
+        .material-symbols-outlined {
+            font-size: 30px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Video</header>
+    <main>
+        <video id="myVideo" width="600" autoplay>
+            <source src="./JEH60C_video1.mp4" type="video/mp4">
+            A böngésző nem támogatja a videó lejátszását
+        </video>
+        <br>
+        <div class="controls">
+            <button onclick="playVideo()"><span class="material-symbols-outlined">play_arrow</span></button>
+            <button onclick="pauseVideo()"><span class="material-symbols-outlined">pause</span></button>
+            <button onclick="togglePlay()"><span class="material-symbols-outlined">play_pause</span></button>
+
+            <button onclick="mute()"><span class="material-symbols-outlined">volume_off</span></button>
+            <button onclick="setVolume(0.2)"><span class="material-symbols-outlined">volume_down</span></button>
+            <button onclick="setVolume(1)"><span class="material-symbols-outlined">volume_up</span></button>
+
+            <button onclick="setSpeed(0.25)"><span class="material-symbols-outlined">slow_motion_video</span></button>
+            <button onclick="setSpeed(0.5)"><span class="material-symbols-outlined">slow_motion_video</span></button>
+            <button onclick="setSpeed(1)"><span class="material-symbols-outlined">speed</span></button>
+            <button onclick="setSpeed(1.5)"><span class="material-symbols-outlined">fast_forward</span></button>
+            <button onclick="setSpeed(2)"><span class="material-symbols-outlined">forward</span></button>
+
+            <button onclick="checkEnded()"><span class="material-symbols-outlined">done</span></button>
+            <button onclick="showDuration()"><span class="material-symbols-outlined">timer</span></button>
+            <button onclick="showCurrentTime()"><span class="material-symbols-outlined">schedule</span></button>
+        </div>
+    </main>
+
+    <footer>
+        <p>Forrás: <a href="https://media.geeksforgeeks.org/wp-content/uploads/20190616234019/Canvas.move_.mp4"
+                target="_blank">Geeks for geeks</a></p>
+    </footer>
+
+    <script>
+        const video = document.getElementById("myVideo");
+
+        function playVideo() { video.play(); }
+        function pauseVideo() { video.pause(); }
+        function togglePlay() {
+            video.paused ? video.play() : video.pause();
+        }
+
+        function mute() {
+            video.muted = !video.muted;
+            alert(video.muted ? "Hang kikapcsolva" : "Hang bekapcsolva");
+        }
+        function setVolume(level) {
+            video.volume = level;
+            video.muted = false;
+        }
+
+        function setSpeed(rate) {
+            video.playbackRate = rate;
+            alert(`Sebesség: ${rate}x`);
+        }
+
+        function checkEnded() {
+            alert(video.ended ? "A videó befejeződött." : "A videó még tart.");
+        }
+        function showDuration() {
+            alert(`Videó hossza: ${video.duration.toFixed(1)} mp`);
+        }
+        function showCurrentTime() {
+            alert(`Jelenlegi pozíció: ${video.currentTime.toFixed(1)} mp`);
+        }
+    </script>
+</body>
+
+</html>
