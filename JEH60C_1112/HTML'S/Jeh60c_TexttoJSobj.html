@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>Text to JSON to JS objektum</title>
+</head>
+<body>
+  <h2>Adatok JSON-ná alakítása és feldolgozása</h2>
+
+  <label>Név: <input id="nev"></label><br>
+  <label>Irányítószám: <input id="irsz"></label><br>
+  <label>Város: <input id="varos"></label><br>
+  <label>Egyetem: <input id="egyetem"></label><br><br>
+
+  <button onclick="adatFeldolgozas()">JSON konvertálás</button>
+
+  <h3>JSON szöveg:</h3>
+  <pre id="jsonText"></pre>
+
+  <h3>JS objektum:</h3>
+  <pre id="jsObj"></pre>
+
+  <script>
+    function adatFeldolgozas() {
+      const nev = document.getElementById("nev").value;
+      const irsz = document.getElementById("irsz").value;
+      const varos = document.getElementById("varos").value;
+      const egyetem = document.getElementById("egyetem").value;
+
+      const jsonText = `{"nev":"${nev}","irsz":"${irsz}","varos":"${varos}","egyetem":"${egyetem}"}`;
+      document.getElementById("jsonText").textContent = jsonText;
+
+      const obj = JSON.parse(jsonText);
+      document.getElementById("jsObj").textContent =
+        `Név: ${obj.nev}\nIrányítószám: ${obj.irsz}\nVáros: ${obj.varos}\nEgyetem: ${obj.egyetem}`;
+    }
+  </script>
+</body>
+</html>

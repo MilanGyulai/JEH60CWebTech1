@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data from JSON</title>
+</head>
+<body>
+    <ul id="konyvlista"></ul>
+
+
+
+    <script>
+        fetch('JEH60C_konyv.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('A JSON fájl nem található!');
+                }
+                return response.json();
+            })
+            .then(adatok => {
+                const lista = document.getElementById("konyvlista");
+                adatok.konyvek.konyv.forEach(k => {
+                    const elem = document.createElement("li");
+                    elem.innerHTML = `<strong>${k.cím}</strong><br>
+                                      <em>${k.iro}</em><br>
+                                      Kiadás éve: ${k.kiadas}`;
+                    lista.appendChild(elem);
+                });
+            })
+            .catch(error => {
+                console.error('Hiba:', error);
+            });
+        </script>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <title>JSON string → JS objektum</title>
+  </head>
+  <body>
+    <h2>JSON beolvasás</h2>
+    <button onclick="jsonBeolvas()">JSON beolvasás</button>
+    <pre id="eredmeny"></pre>
+
+    <script>
+      function jsonBeolvas() {
+        const jsonSzoveg = '{"nev":"Gyulai Milán", "kor":21, "varos":"Sátoraljaújhely"}';
+
+        const obj = JSON.parse(jsonSzoveg);
+
+        document.getElementById(
+          "eredmeny"
+        ).textContent = `Név: ${obj.nev}\nKor: ${obj.kor}\nVáros: ${obj.varos}`;
+      }
+    </script>
+  </body>
+</html>

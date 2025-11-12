@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jsons String convert to json Obj</title>
+</head>
+
+
+<body>
+    <h2>JSON String konvertálása JavaScript objektummá</h2>
+    <button onclick="jsonBeolvas()">Konvertálás</button>
+    <pre id="eredmeny"></pre>
+    
+    <script>
+    function jsonBeolvas() {
+      const jsonString = '{"Egyetem":"Miskolci Egyetem","Város":"Sátoraljaújely","Irányítószám":"3980","Név":"Gyulai Milán"}';
+
+      const obj = JSON.parse(jsonString);
+
+      document.getElementById("eredmeny").textContent =
+        `Név: ${obj.Név}\nEgyetem: ${obj.Egyetem}\nVáros: ${obj.Város}\nIrányítószám: ${obj.Irányítószám}`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <title>JS objektum to JSON string</title>
+</head>
+<body>
+  <h2>JSON generálás</h2>
+  <button onclick="jsonGeneral()">JSON generálás</button>
+  <pre id="eredmeny"></pre>
+
+  <script>
+    function jsonGeneral() {
+      const szemely = {
+        nev: "Gyulai Milán",
+        kor: 21,
+        varos: "Sátoraljaújhely"
+      };
+
+      const jsonSzoveg = JSON.stringify(szemely, null, 2);
+
+      document.getElementById("eredmeny").textContent = jsonSzoveg;
+    }
+  </script>
+</body>
+</html>
