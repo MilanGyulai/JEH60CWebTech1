@@ -1,0 +1,18 @@
+[
+  {
+    "id": 1,
+    "marka": "Opel",
+    "modell": "Astra",
+    "evjarat": 2020,
+    "ar": "5.500.000 Ft",
+    "kep": "images/astra.jpg"
+  },
+  {
+    "id": 2,
+    "marka": "Ford",
+    "modell": "Focus",
+    "evjarat": 2019,
+    "ar": "4.900.000 Ft",
+    "kep": "images/focus.jpg"
+  }
+]

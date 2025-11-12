@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON megvalósítása – JavaScript (4. Task)</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        .output { margin-top: 20px; border: 1px solid #ccc; padding: 15px; }
+        .manufacturer { font-weight: bold; margin-top: 10px; }
+        ul { list-style-type: none; padding-left: 20px; }
+    </style>
+</head>
+<body>
+
+    <h1>Tömbökön belüli tömbök ciklusa</h1>
+    <p>Gyulai Milán 21</p>
+
+    <div id="outputContainer" class="output">
+        </div>
+
+    <script>
+
+        const xyobj = {
+            "name": "GM",
+            "age": 21,
+            "cars": [
+                { "name": "Toyota", "models": ["CHR", "Corolla", "Proace"] },
+                { "name": "Ford", "models": ["Kuga", "Mondeo", "Mustang"] },
+                { "name": "BMW", "models": ["320", "X3", "X5"] },
+                { "name": "Fiat", "models": ["500", "Panda", "Tipo"] }
+            ]
+        };
+
+
+        const outputContainer = document.getElementById('outputContainer');
+        let htmlContent = '';
+
+  
+        htmlContent += '<h2>Tömbökön belüli tömbök ciklusa</h2>';
+
+  
+        for (let i = 0; i < xyobj.cars.length; i++) {
+            const carManufacturer = xyobj.cars[i];
+            
+            htmlContent += `<div class="manufacturer">${carManufacturer.name}:</div>`;
+            
+            htmlContent += '<ul>';
+            
+            for (let j = 0; j < carManufacturer.models.length; j++) {
+                const model = carManufacturer.models[j];
+                
+                htmlContent += `<li>${model}</li>`;
+            }
+            
+            htmlContent += '</ul>';
+        }
+
+        outputContainer.innerHTML = htmlContent;
+    </script>
+
+</body>
+</html>
