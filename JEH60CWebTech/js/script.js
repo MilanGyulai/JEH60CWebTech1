@@ -6,7 +6,7 @@ $(document).ready(function () {
 
         if ($listaHelye.length) {
             $.ajax({
-                // JAVÍTVA: Helyes webes útvonalelválasztó (perjel)
+                
                 url: '../json/autok.json',
                 method: 'GET',
                 dataType: 'json',
@@ -28,17 +28,17 @@ $(document).ready(function () {
         }
     }
 
-    // Segéd függvény a kártya HTML struktúrájának létrehozására
+    
     function createAutoCard(auto) {
-        // Új HTML elem készítése jQuery-vel [cite: 45]
+        
         return $('<div>', { class: 'auto-kartya' }).html(
             '<div class="kartya-kep-kontener">' +
-            // Kép elérése a JSON-ból [cite: 47]
+            
             '<img src="' + auto.kep_url + '" alt="' + auto.marka + ' ' + auto.modell + '" class="kartya-kep">' +
             '</div>' +
             '<div class="kartya-tartalom">' +
             '<h3>' + auto.marka + ' ' + auto.modell + '</h3>' +
-            // Meglévő HTML elem módosítása: ár formázása [cite: 45]
+            
             '<p class="ar"><strong>Ár:</strong> ' + auto.ar.toLocaleString('hu-HU') + ' Ft</p>' +
             '<button class="reszletek-gomb gomb">Részletek</button>' +
             '</div>'
@@ -52,7 +52,7 @@ $(document).ready(function () {
     $('#uj_auto_urlap').on('submit', function (e) {
         e.preventDefault();
 
-        // Adatok előkészítése (ID nélkül, azt majd a PHP adja)
+        
         let ujAuto = {
             marka: $('#uj_marka').val(),
             modell: $('#uj_modell').val(),
@@ -69,30 +69,30 @@ $(document).ready(function () {
             const reader = new FileReader();
 
             reader.onload = function(e) {
-                ujAuto.kep_url = e.target.result; // A kép Base64 kódja
+                ujAuto.kep_url = e.target.result; 
 
-                // --- AJAX KÉRÉS A PHP-NEK (A TÉNYLEGES MENTÉS) ---
+                
                 $.ajax({
-                    url: 'save_auto.php', // Ezt a fájlt hívjuk meg
+                    url: '',
                     method: 'POST',
-                    contentType: 'application/json', // Jelezzük, hogy JSON-t küldünk
-                    data: JSON.stringify(ujAuto),    // Az adat átalakítása szöveggé
+                    contentType: 'application/json', 
+                    data: JSON.stringify(ujAuto),
                     success: function(valasz) {
-                        // Ha a PHP sikeresen elmentette:
+                        
                         const szerverValasz = JSON.parse(valasz);
                         
                         if(szerverValasz.status === 'success') {
                             alert("Siker! Az autó elmentve a szerverre.");
                             
-                            // Frissítjük az ID-t a PHP válasza alapján
+                            
                             ujAuto.id = szerverValasz.id;
 
-                            // Megjelenítjük a kártyát azonnal (hogy ne kelljen frissíteni)
+                            
                             const $listaHelye = $('#json_lista_helye');
                             const ujKartya = createAutoCard(ujAuto);
                             $listaHelye.prepend(ujKartya);
                             
-                            // JSON ellenőrző frissítése
+                            
                             $('#json_eredmeny').text(JSON.stringify(ujAuto, null, 4));
                         }
                     },
@@ -146,7 +146,7 @@ $(document).ready(function () {
         // Rádiógombok ellenőrzése
         if ($urlap.find('input[name="elerhetoseg"]:checked').length === 0) {
             valid = false;
-            $urlap.find('input[name="elerhetoseg"]').closest('p').css('border', '1px solid red'); // CSS beállítása [cite: 43]
+            $urlap.find('input[name="elerhetoseg"]').closest('p').css('border', '1px solid red');
             $hibaUzenet.append('<p>Kérjük, válaszd ki az elérhetőségi módot.</p>');
         }
 

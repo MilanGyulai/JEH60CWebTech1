@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery Task</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h1>jQuery Feladatok</h1>
+  <p>Ez egy bekezdés, kattints ide, hogy elrejtsd.</p>
+  <p>Ez a második bekezdés, kattints ide a megjelenítéséhez.</p>
+  <a href="#" id="link">Kattints ide a bekezdés megjelenítéséhez!</a>
+  <p>ME weboldal: <a href="https://www.uni-miskolc.hu/">Miskolci Egyetem</a>
+  </p>
+
+  <script>
+    $(document).ready(function() {
+      $("p").click(function() {
+        $(this).hide();
+      });
+      $("#link").click(function() {
+        $("p").show();
+      });
+    });
+  </script>
+</body>
+</html>
