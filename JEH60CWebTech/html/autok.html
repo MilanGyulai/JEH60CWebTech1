@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Autóink - Kínálat</title>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Aktuális Autó Kínálatunk</h1>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Kezdőlap</a></li>
+          <li><a href="autok.html" style="color: blue">Autók</a></li>
+          <li><a href="szolgaltatasok.html">Szolgáltatások</a></li>
+          <li><a href="rolunk.html">Rólunk</a></li>
+          <li><a href="kapcsolat.html">Kapcsolat</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <article>
+      <section>
+        <h2>Kiemelt Ajánlatok (HTML Táblázat)</h2>
+        <p>Tekintse meg a legnépszerűbb modelljeinket az alábbi táblázatban.</p>
+
+        <table id="kiemelt_tablazat" class="autolista">
+          <thead>
+            <tr>
+              <th>Márka</th>
+              <th>Modell</th>
+              <th>Évjárat</th>
+              <th>Ár (Ft)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Opel</td>
+              <td>Astra K</td>
+              <td>2019</td>
+              <td>3 800 000</td>
+            </tr>
+            <tr>
+              <td>Skoda</td>
+              <td>Octavia 1.6 TDI</td>
+              <td>2021</td>
+              <td>6 100 000</td>
+            </tr>
+            <tr>
+              <td>BMW</td>
+              <td>320d</td>
+              <td>2018</td>
+              <td>5 950 000</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4">
+                Az árak tájékoztató jellegűek, további részletek a teljes
+                listában!
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+<section id="uj_auto_form">
+    <h2>Adj Hozzá Új Autót (Kártya Létrehozás)</h2>
+    <form id="uj_auto_urlap">
+        <label for="uj_marka">Márka:</label>
+        <input type="text" id="uj_marka" required>
+
+        <label for="uj_modell">Modell:</label>
+        <input type="text" id="uj_modell" required>
+
+        <label for="uj_ar">Ár (Ft):</label>
+        <input type="number" id="uj_ar" required>
+
+        <label for="uj_kep_fajl">Autó képe (Tallózás):</label>
+        <input type="file" id="uj_kep_fajl" accept="image/*" required>
+        
+        <button type="submit" class="gomb" id="hozzaad_gomb">Kártya Hozzáadása</button>
+    </form>
+
+    <div style="margin-top: 20px; background: #f4f4f4; padding: 10px; border: 1px dashed #333;">
+        <h3>Generált JSON adat (Ellenőrzés):</h3>
+        <pre id="json_eredmeny" style="color: green; font-weight: bold;">(Itt jelenik meg az adat JSON formátumban...)</pre>
+    </div>
+</section>
+        
+        <section>
+            <h2>Teljes Készlet (AJAX / JSON adatok)</h2>
+            <div id="json_lista_helye" class="kartya-kontener">
+                </div>
+        </section>
+    </article>
+
+    <aside>
+      <h3>Keresés</h3>
+      <p>Használd a szűrőinket a tökéletes autó megtalálásához!</p>
+      <p>Aktuálisan elérhető darabszám: <span id="darabszam">...</span></p>
+    </aside>
+
+    <footer>
+      <p>Copyright &copy; 2025 Autókereskedés</p>
+      <p>
+        Kapcsolat:
+        <a href="email: milan.gyulai@student.uni-miskolc.hu"
+          >milan.gyulai@student.uni-miskolc.hu</a
+        >
+      </p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>

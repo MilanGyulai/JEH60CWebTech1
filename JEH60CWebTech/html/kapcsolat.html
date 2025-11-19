@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kapcsolat - Autókereskedés</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <style>
+      #urlap_container {
+        border: 1px solid #ccc;
+        padding: 20px;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Kapcsolatfelvétel</h1>
+
+      <nav>
+        <ul>
+          <li><a href="index.html">Kezdőlap</a></li>
+          <li><a href="autok.html">Autók</a></li>
+          <li><a href="szolgaltatasok.html">Szolgáltatások</a></li>
+          <li><a href="rolunk.html">Rólunk</a></li>
+          <li><a href="kapcsolat.html" style="color: blue">Kapcsolat</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <article>
+      <section>
+        <h2>Lépj Velünk Kapcsolatba!</h2>
+        <p>
+          Kérjük, töltsd ki az alábbi űrlapot, és hamarosan felvesszük veled a
+          kapcsolatot.
+        </p>
+
+        <div id="urlap_container">
+          <form id="kapcsolat_urlap">
+            <label for="nev">Név:</label>
+            <input type="text" id="nev" name="nev" required />
+
+            <label for="email">E-mail cím:</label>
+            <input type="email" id="email" name="email" required />
+
+            <label for="tema">Téma kiválasztása:</label>
+            <input list="temak" id="tema" name="tema" />
+            <datalist id="temak">
+              <option value="Értékesítési kérdés"></option>
+              <option value="Szerviz időpont"></option>
+              <option value="Általános információ"></option>
+            </datalist>
+
+            <label>
+              <input
+                type="checkbox"
+                id="hirlevel"
+                name="hirlevel"
+                value="igen"
+              />
+              Szeretnék hírlevelet kapni
+            </label>
+
+            <p>Hogyan vegyük fel veled a kapcsolatot?</p>
+            <label>
+              <input
+                type="radio"
+                id="telefon"
+                name="elerhetoseg"
+                value="telefon"
+                required
+              />
+              Telefon
+            </label>
+            <label>
+              <input
+                type="radio"
+                id="email_el"
+                name="elerhetoseg"
+                value="email"
+                required
+              />
+              E-mail
+            </label>
+
+            <label for="talalkozo_datum">Javasolt találkozó dátuma:</label>
+            <input type="date" id="talalkozo_datum" name="talalkozo_datum" />
+
+            <label for="kedvenc_szin"
+              >Kedvenc színed (esetleg az autó színe):</label
+            >
+            <input
+              type="color"
+              id="kedvenc_szin"
+              name="kedvenc_szin"
+              value="#000000"
+            />
+
+            <label for="uzenet">Üzeneted:</label>
+            <textarea id="uzenet" name="uzenet" rows="5" required></textarea>
+
+            <button type="submit" id="kuldes_gomb" class="gomb">
+              Üzenet küldése
+            </button>
+            <button type="reset" class="gomb">Űrlap törlése</button>
+
+            <div id="hiba_uzenet"></div>
+          </form>
+        </div>
+      </section>
+    </article>
+
+    <aside>
+      <h3>Elérhetőségeink</h3>
+      <p>Cím: 3515 Miskolc, Autó u. 1. Telefon: +36 50 123 4567</p>
+    </aside>
+
+    <footer>
+      <p>Copyright &copy; 2025 Autókereskedés</p>
+      <p>
+        Kapcsolat:
+        <a href="email: milan.gyulai@student.uni-miskolc.hu"
+          >milan.gyulai@student.uni-miskolc.hu</a
+        >
+      </p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="../js/script.js"></script>
+  </body>
+</html>

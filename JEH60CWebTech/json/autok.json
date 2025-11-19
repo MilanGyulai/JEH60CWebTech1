@@ -1,0 +1,32 @@
+{
+    "autok": [
+        {
+            "id": 1,
+            "marka": "Toyota",
+            "modell": "Corolla",
+            "evjarat": 2020,
+            "uzemanyag": "Hibrid",
+            "ar": 7500000,
+            "kep_url":"../images/toyota-corolla.jpg"
+        },
+        {
+            "id": 2,
+            "marka": "Ford",
+            "modell": "Focus",
+            "evjarat": 2017,
+            "uzemanyag": "Benzin",
+            "ar": 3100000,
+            "kep_url":"../images/ford-focus.jpg"
+        },
+        {
+            "id": 3,
+            "marka": "Renault",
+            "modell": "Clio",
+            "evjarat": 2022,
+            "uzemanyag": "Dízel",
+            "ar": 5300000,
+            "kep_url":"../images/renault-clio.jpg"
+        }
+    ],
+    "utolso_frissites": "2025-11-17"
+}

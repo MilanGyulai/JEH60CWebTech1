@@ -1,0 +1,243 @@
+/*
+FŐOLDAL(index.html)
+*/
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  color: #333;
+}
+
+header h1{
+  margin-left: 2%;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+nav li {
+  float: left;
+}
+
+nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+nav li a:hover {
+  background-color: #555;
+}
+
+nav a:visited {
+  color: #ccc;
+}
+nav a:active {
+  background-color: #4caf50;
+}
+
+article {
+  width: 70%;
+  float: left;
+  padding: 20px;
+}
+
+aside {
+  width: 25%;
+  float: right;
+  padding: 20px;
+  background-color: #969696aa;
+}
+
+footer {
+  clear: both;
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: white;
+  margin-top: 20px;
+}
+
+footer a {
+  color: lightblue;
+  text-decoration: none;
+}
+
+/*
+ŰRLAP(kapcsolat.html)
+*/
+
+#kapcsolat_urlap label,
+#kapcsolat_urlap input[type="text"],
+#kapcsolat_urlap input[type="email"],
+#kapcsolat_urlap input[type="date"],
+#kapcsolat_urlap textarea,
+#kapcsolat_urlap input[list] {
+  display: block;
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#kapcsolat_urlap textarea {
+  resize: vertical;
+}
+
+#kapcsolat_urlap label {
+  background-color: #b0b0b0;
+}
+
+#kapcsolat_urlap input[type="radio"],
+#kapcsolat_urlap input[type="checkbox"] {
+  display: inline-block;
+  width: auto;
+  margin-right: 5px;
+}
+
+.gomb {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.gomb:hover {
+  background-color: #45a049;
+}
+
+#hiba_uzenet {
+  color: red;
+  font-weight: bold;
+  margin-top: 15px;
+  padding: 10px;
+  border: 1px solid red;
+  background-color: #ffe0e0;
+  display: none;
+}
+
+.hibas_mezo {
+  border: 2px solid red !important;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+/*
+AUTÓK(autok.html)
+*/
+
+.autolista {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.autolista th,
+.autolista td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+.autolista th {
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+}
+
+.autolista tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.autolista tr:hover {
+  background-color: #ddd;
+}
+
+#kiemelt_tablazat tfoot td {
+  background-color: #ccc;
+  font-style: italic;
+  text-align: center;
+}
+
+/*
+AUTÓK KÁRTYA(autok.html)
+*/
+
+.kartya-kontener {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.auto-kartya {
+  width: 300px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background-color: white;
+  transition: transform 0.3s ease-in-out;
+}
+
+.auto-kartya:hover {
+  transform: translateY(-5px);
+}
+
+.kartya-kep-kontener {
+  height: 200px;
+  overflow: hidden;
+}
+
+.kartya-kep {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.kartya-tartalom {
+  padding: 15px;
+}
+
+.kartya-tartalom h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.kartya-tartalom .ar {
+  font-size: 1.2em;
+  color: #e67e22;
+  font-weight: bold;
+}
+
+#uj_auto_urlap input[type="text"],
+#uj_auto_urlap input[type="number"] {
+  display: block;
+  width: 50%;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#hozzaad_gomb {
+  background-color: #2980b9;
+}
+#hozzaad_gomb:hover {
+  background-color: #2c3e50;
+}
