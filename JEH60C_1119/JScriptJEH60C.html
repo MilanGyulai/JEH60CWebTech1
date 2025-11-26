@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JScrip - Órarend</title>
+</head>
+<body>
+  <button onclick="show()">Órarend betöltése</button>
+  <div id="output"></div>
+
+  <script>
+    function show() {
+      fetch('orarendJEH60C.json')
+        .then(response => response.json())
+        .then(data => megjelenit(data))
+        .catch(err => console.log("Hiba:", err));
+    }
+
+    function megjelenit(data) {
+      let out = "";
+      let orak = data.JEH60C_orarend.ora;
+
+      for (let i = 0; i < orak.length; i++) {
+        let ora = orak[i];
+        out += `<p><b>Tárgy:</b> ${ora.targy} <br>`;
+        out += `<b>Nap:</b> ${ora.idopont.nap} <br>`;
+        out += `<b>Időpont:</b> ${ora.idopont.tol} - ${ora.idopont.ig} <br>`;
+        out += `<b>Helyszín:</b> ${ora.helyszin} <br>`;
+        out += `<b>Oktató:</b> ${ora.oktato} <br>`;
+        out += `<b>Szak:</b> ${ora.szak} <p><hr>`;
+      }
+
+      document.getElementById("output").innerHTML = out;
+    }
+  </script>
+</body>
+</html>

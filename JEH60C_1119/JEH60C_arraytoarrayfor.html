@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>Tömbökön belüli tömbök – For–For ciklus</title>
+</head>
+<body>
+
+<h2>Tömbökön belüli tömbök ciklusa</h2>
+<div id="output"></div>
+
+<script>
+let xyobj = {
+    "name": "GM",
+    "age": 21,
+    "cars": [
+        { "name": "Toyota", "models": ["CHR", "Corolla", "Proace"] },
+        { "name": "Ford",   "models": ["Kuga", "Mondeo", "Mustang"] },
+        { "name": "BMW",    "models": ["i320", "X3", "X5"] },
+        { "name": "Fiat",   "models": ["500", "Panda", "Tipo"] }
+    ]
+};
+
+let out = "<h3>Hallgató Neve (" + xyobj.age + ")</h3>";
+
+
+for (let i = 0; i < xyobj.cars.length; i++) {
+    out += "<b>" + xyobj.cars[i].name + ":</b><ul>";
+
+
+    for (let j = 0; j < xyobj.cars[i].models.length; j++) {
+        out += "<li>" + xyobj.cars[i].models[j] + "</li>";
+    }
+
+    out += "</ul>";
+}
+
+document.getElementById("output").innerHTML = out;
+</script>
+
+</body>
+</html>

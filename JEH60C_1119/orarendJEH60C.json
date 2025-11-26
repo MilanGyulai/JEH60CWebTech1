@@ -1,0 +1,28 @@
+{
+    "JEH60C_orarend": {
+        "ora": [
+            {
+                "targy": "Szoftvertesztelés",
+                "idopont":{
+                    "nap":"Hétfő",
+                    "tol": 8,
+                    "ig": 10
+                },
+                "helyszin":"2. Előadó",
+                "oktato": "Dr. Hornyák Olivér",
+                "szak": "GE-BP"
+            },
+            {
+                "targy": "Numerikus módszerek",
+                "idopont":{
+                    "nap":"Hétfő",
+                    "tol": 12,
+                    "ig": 14
+                },
+                "helyszin":"X. Előadó",
+                "oktato": "Dr. Karácsony Zsolt",
+                "szak": "GE-BP"
+            }
+        ]
+    }
+}
