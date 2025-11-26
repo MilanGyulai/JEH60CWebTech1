@@ -1,32 +1,77 @@
 {
-    "autok": [
-        {
-            "id": 1,
-            "marka": "Toyota",
-            "modell": "Corolla",
-            "evjarat": 2020,
-            "uzemanyag": "Hibrid",
-            "ar": 7500000,
-            "kep_url":"../images/toyota-corolla.jpg"
-        },
-        {
-            "id": 2,
-            "marka": "Ford",
-            "modell": "Focus",
-            "evjarat": 2017,
-            "uzemanyag": "Benzin",
-            "ar": 3100000,
-            "kep_url":"../images/ford-focus.jpg"
-        },
-        {
-            "id": 3,
-            "marka": "Renault",
-            "modell": "Clio",
-            "evjarat": 2022,
-            "uzemanyag": "Dízel",
-            "ar": 5300000,
-            "kep_url":"../images/renault-clio.jpg"
-        }
-    ],
-    "utolso_frissites": "2025-11-17"
+  "autok": [
+    {
+      "id": 1,
+      "marka": "Toyota",
+      "modell": "Corolla",
+      "evjarat": 2020,
+      "uzemanyag": "Hibrid",
+      "ar": 7500000,
+      "kep_url": "../images/toyota-corolla.jpg"
+    },
+    {
+      "id": 2,
+      "marka": "Ford",
+      "modell": "Focus",
+      "evjarat": 2017,
+      "uzemanyag": "Benzin",
+      "ar": 3100000,
+      "kep_url": "../images/ford-focus.jpg"
+    },
+    {
+      "id": 3,
+      "marka": "Renault",
+      "modell": "Clio",
+      "evjarat": 2022,
+      "uzemanyag": "Dízel",
+      "ar": 5300000,
+      "kep_url": "../images/renault-clio.jpg"
+    },
+    {
+      "id": 4,
+      "marka": "Opel",
+      "modell": "Astra",
+      "evjarat": 2019,
+      "uzemanyag": "Benzin",
+      "ar": 4200000,
+      "kep_url": "../images/opel-astra.jpg"
+    },
+    {
+      "id": 5,
+      "marka": "Volkswagen",
+      "modell": "Golf VIII",
+      "evjarat": 2021,
+      "uzemanyag": "Benzin",
+      "ar": 8900000,
+      "kep_url": "../images/vw-golf.jpg"
+    },
+    {
+      "id": 6,
+      "marka": "Suzuki",
+      "modell": "Vitara",
+      "evjarat": 2018,
+      "uzemanyag": "Benzin",
+      "ar": 4500000,
+      "kep_url": "../images/suzuki-vitara.jpg"
+    },
+    {
+      "id": 7,
+      "marka": "Honda",
+      "modell": "Civic",
+      "evjarat": 2023,
+      "uzemanyag": "Hibrid",
+      "ar": 11200000,
+      "kep_url": "../images/honda-civic.jpg"
+    },
+    {
+      "id": 8,
+      "marka": "BMW",
+      "modell": "320i",
+      "evjarat": 2016,
+      "uzemanyag": "Dízel",
+      "ar": 5800000,
+      "kep_url": "../images/bmw-320i.jpg"
+    }
+  ],
+  "utolso_frissites": "2025-11-26"
 }

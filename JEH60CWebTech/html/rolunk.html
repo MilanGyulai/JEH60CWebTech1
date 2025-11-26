@@ -66,6 +66,25 @@
     </article>
 
     <aside>
+          <div id="auth_doboz">
+        <div class="auth_fulek">
+            <button id="ful_login" class="aktiv_ful" type="button">Belépés</button>
+            <button id="ful_reg" type="button">Regisztráció</button>
+        </div>
+
+        <form id="login_form">
+            <input type="text" placeholder="Felhasználónév" required>
+            <input type="password" placeholder="Jelszó" required>
+            <button type="submit" class="gomb teljes_szelesseg">Belépés</button>
+        </form>
+
+        <form id="reg_form" style="display: none;">
+            <input type="text" placeholder="Felhasználónév" required>
+            <input type="email" placeholder="E-mail cím" required>
+            <input type="password" placeholder="Jelszó" required>
+            <button type="submit" class="gomb teljes_szelesseg">Regisztráció</button>
+        </form>
+    </div>
       <h3>Elismerések</h3>
       <p>
         2020-ban elnyertük az Év Autókereskedője díjat a régióban.

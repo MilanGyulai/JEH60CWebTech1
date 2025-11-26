@@ -65,24 +65,34 @@
       </section>
     </article>
 
-    <aside>
-      <h3>Kapcsolódó tartalom</h3>
-      <p>
-        Nézze meg legújabb
-        <a
-          href="szolgaltatasok.html#finanszirozas"
-          title="Finanszírozási feltételek"
-          >finanszírozási ajánlatainkat</a
-        >, vagy lépjen velünk kapcsolatba a
-        <a href="kapcsolat.html">Kapcsolat</a> oldalon.
-      </p>
-      <div style="border: 2px solid orange; padding: 10px; margin-top: 15px">
-        <p>
-          <strong>AKCIÓ:</strong> Most minden jármű mellé ingyenes téli gumi
-          szett jár!
-        </p>
-      </div>
-    </aside>
+<aside>
+    <div id="auth_doboz">
+        <div class="auth_fulek">
+            <button id="ful_login" class="aktiv_ful" type="button">Belépés</button>
+            <button id="ful_reg" type="button">Regisztráció</button>
+        </div>
+
+        <form id="login_form">
+            <input type="text" placeholder="Felhasználónév" required>
+            <input type="password" placeholder="Jelszó" required>
+            <button type="submit" class="gomb teljes_szelesseg">Belépés</button>
+        </form>
+
+        <form id="reg_form" style="display: none;">
+            <input type="text" placeholder="Felhasználónév" required>
+            <input type="email" placeholder="E-mail cím" required>
+            <input type="password" placeholder="Jelszó" required>
+            <button type="submit" class="gomb teljes_szelesseg">Regisztráció</button>
+        </form>
+    </div>
+    
+    <hr> <h3>Keresés</h3>
+    <p>Használd a szűrőinket...</p>
+    
+    <div style="border: 2px solid orange; padding: 10px; margin-top: 15px;">
+        <p><strong>AKCIÓ:</strong> Most minden jármű mellé ingyenes téli gumi szett jár!</p>
+    </div>
+</aside>
 
     <footer>
       <p>Copyright &copy; 2025 Autókereskedés</p>
