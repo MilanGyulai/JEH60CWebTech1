@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <title>jQuery feladat</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="JEH60C_6.js"></script>
+
+    <style>
+      input[type="text"] {
+        background-color: #c5d7f0;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>jQuery feladat</h2>
+    <p>Adjon meg két egész számot!</p>
+
+    A = <input type="text" id="a" /><br />
+    B = <input type="text" id="b" /><br /><br />
+
+    <input type="radio" name="op" value="mul" /> A * B<br /><br />
+    <input type="radio" name="op" value="div" /> A / B<br /><br />
+    <input type="radio" name="op" value="add" /> A + B<br /><br />
+    <input type="radio" name="op" value="sub" /> A - B<br /><br />
+
+    <button id="calc">Számol</button>
+
+    <b> Eredmény: </b> <span id="res"></span>
+  </body>
+</html>

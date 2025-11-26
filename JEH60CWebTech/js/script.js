@@ -60,7 +60,7 @@ $(document).ready(function () {
         szerkesztettKartyaElem = $(this).closest('.auto-kartya');
 
         $('#hozzaad_gomb').text('Mentés (Módosítás)');
-        $('#hozzaad_gomb').css('background-color', '#007BFF'); // Kékre színezzük
+        $('#hozzaad_gomb').css('background-color', '#007BFF'); 
 
         $('html, body').animate({
             scrollTop: $("#uj_auto_form").offset().top
@@ -80,7 +80,7 @@ $(document).ready(function () {
             marka: $('#uj_marka').val(),
             modell: $('#uj_modell').val(),
             evjarat: new Date().getFullYear(),
-            uzemanyag: 'Új',
+            uzemanyag: $('#uj_uzemanyag').val(),
             ar: parseInt($('#uj_ar').val()),
             kep_url: ''
         };
