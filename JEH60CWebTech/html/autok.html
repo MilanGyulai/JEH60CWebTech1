@@ -6,11 +6,11 @@
     <title>Autóink - Kínálat</title>
     <link rel="stylesheet" href="../css/style.css" />
     <style>
-    header {
-      background-color: #f0f0f0;
-      padding: 10px 0;
-    }
-  </style>
+      header {
+        background-color: #f0f0f0;
+        padding: 10px 0;
+      }
+    </style>
   </head>
   <body>
     <header>
@@ -41,31 +41,11 @@
               <th>Ár (Ft)</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>Opel</td>
-              <td>Astra K</td>
-              <td>2019</td>
-              <td>3 800 000</td>
-            </tr>
-            <tr>
-              <td>Skoda</td>
-              <td>Octavia 1.6 TDI</td>
-              <td>2021</td>
-              <td>6 100 000</td>
-            </tr>
-            <tr>
-              <td>BMW</td>
-              <td>320d</td>
-              <td>2018</td>
-              <td>5 950 000</td>
-            </tr>
-          </tbody>
+          <tbody id="kiemelt_body"></tbody>
           <tfoot>
             <tr>
               <td colspan="4">
-                Az árak tájékoztató jellegűek, további részletek a teljes
-                listában!
+                Az árak tájékoztató jellegűek, a legolcsóbb 3 ajánlatunk.
               </td>
             </tr>
           </tfoot>
@@ -94,8 +74,6 @@
             Kártya Hozzáadása
           </button>
         </form>
-
-
       </section>
 
       <section>
@@ -103,6 +81,8 @@
         <div id="json_lista_helye" class="kartya-kontener"></div>
       </section>
     </article>
+
+   
 
     <aside>
       <div id="auth_doboz">
@@ -132,6 +112,21 @@
       <p>Használd a szűrőinket a tökéletes autó megtalálásához!</p>
       <p>Aktuálisan elérhető darabszám: <span id="darabszam">...</span></p>
     </aside>
+     <section style="margin-top: 50px; border-top: 2px dashed #ccc; padding-top: 20px;">
+            <h3>⚙️ Fejlesztői Adatok (JSON Forráskód)</h3>
+            <p>Az alábbi doboz mutatja a szerverről érkező nyers adatokat:</p>
+            
+            <pre id="json_kijelzo" style="
+                background-color: #2d2d2d; 
+                color: #50fa7b; 
+                padding: 15px; 
+                border-radius: 6px; 
+                overflow-x: auto; 
+                font-family: monospace; 
+                font-size: 14px;
+                max-height: 400px;
+            ">Betöltés...</pre>
+        </section>
 
     <footer>
       <p>Copyright &copy; 2025 Autókereskedés</p>

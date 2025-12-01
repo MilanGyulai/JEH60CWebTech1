@@ -92,6 +92,11 @@ footer a {
   border-radius: 4px;
 }
 
+.hibas_mezo {
+    border: 2px solid red !important;
+    background-color: #ffe6e6;
+}
+
 #kapcsolat_urlap textarea {
   resize: vertical;
 }
