@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>JEH60C - Animáció</title>
+    <style>
+        #doboz {
+            width: 150px;
+            height: 100px;
+            background-color: green;
+            color: white;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            left: 0; top: 0;
+        }
+        .container { margin-top: 20px; height: 400px; border: 1px dotted #ccc; position: relative; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="JEH60C_3.js"></script>
+</head>
+<body>
+
+    <h1>jQuery feladatok - Animáció</h1>
+    <button id="btnAnim">Animáció indítása</button>
+    <button id="btnHide">Bekezdések elrejtése</button>
+    <button id="btnToggle">Összecsuk / Kinyit</button>
+
+    <div class="bekezdesek">
+        <p>A jQuery egy JavaScript programozói könyvtár...</p>
+        <p>Effekteket és animációt adhatunk HTML elemeinkhez...</p>
+    </div>
+
+    <div class="container">
+        <div id="doboz">ME GEIK - PTI</div>
+    </div>
+
+</body>
+</html>

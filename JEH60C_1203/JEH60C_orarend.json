@@ -1,0 +1,43 @@
+{
+  "kurzus": [
+    {
+      "targy": "Web technológiák 1",
+      "idopont": {
+        "nap": "Szerda",
+        "tol": "12:00",
+        "ig": "13:30"
+      },
+      "helyszin": "Inf/101",
+      "oktato": "Dr. Bednarik László",
+      "szak": "MI, PTI",
+      "tipus": "Gyk."
+    },
+    {
+      "targy": "Adatbázisok",
+      "idopont": {
+        "nap": "Kedd",
+        "tol": "10:00",
+        "ig": "11:30"
+      },
+      "helyszin": "XXX. ea",
+      "oktato": "Sasvári Péter",
+      "szak": "MI, PTI",
+      "tipus": "EA."
+    }
+  ],
+  "cim": {
+    "iranyitoszam": 3980,
+    "varos": "Sátoraljaújhely",
+    "utca": "Rákóczi utca"
+  },
+  "telefonszam": [
+    {
+      "tipus": "Vezetékes",
+      "szam": "062000000"
+    },
+    {
+      "tipus": "Mobil",
+      "szam": "0670 387-3075"
+    }
+  ]
+}

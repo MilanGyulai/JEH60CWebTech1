@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <title>JEH60C - Számológép</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="JEH60C_4.js"></script>
+</head>
+<body>
+    <h1>jQuery feladat</h1>
+    <p>Adjon meg két egész számot!</p>
+    
+    <label>A: <input type="number" id="numA"></label><br><br>
+    <label>B: <input type="number" id="numB"></label><br><br>
+
+    <div id="muveletek">
+        <label><input type="radio" name="op" value="add"> A + B</label><br>
+        <label><input type="radio" name="op" value="sub"> A - B</label><br>
+        <label><input type="radio" name="op" value="mul"> A * B</label><br>
+        <label><input type="radio" name="op" value="div"> A / B</label><br>
+    </div>
+    <br>
+    <button id="btnCalc">Számol</button>
+    <p><strong>Eredmény: <span id="eredmeny"></span></strong></p>
+</body>
+</html>
