@@ -14,6 +14,7 @@
   </head>
   <body>
     <header>
+      <button id="dark_mode_btn" title="Sötét mód váltása">🌙</button>
       <h1>Autókereskedés</h1>
       <nav>
         <ul>
@@ -24,7 +25,6 @@
           <li><a href="szolgaltatasok.html">Szolgáltatások</a></li>
           <li><a href="rolunk.html">Rólunk</a></li>
           <li><a href="kapcsolat.html">Kapcsolat</a></li>
-          <li></li>
         </ul>
       </nav>
     </header>
@@ -65,34 +65,65 @@
       </section>
     </article>
 
-<aside>
-    <div id="auth_doboz">
-        <div class="auth_fulek">
-            <button id="ful_login" class="aktiv_ful" type="button">Belépés</button>
-            <button id="ful_reg" type="button">Regisztráció</button>
+    <aside>
+      <div id="auth_box">
+        <div class="auth_tabs">
+          <button id="tab_login" class="active-tab" type="button">
+            Belépés
+          </button>
+          <button id="tab_register" type="button">Regisztráció</button>
         </div>
 
         <form id="login_form">
-            <input type="text" placeholder="Felhasználónév" required>
-            <input type="password" placeholder="Jelszó" required>
-            <button type="submit" class="gomb teljes_szelesseg">Belépés</button>
+          <input type="text" placeholder="Felhasználónév" required />
+          <input type="password" placeholder="Jelszó" required />
+          <button type="submit" class="btn full-width">Belépés</button>
         </form>
 
-        <form id="reg_form" style="display: none;">
-            <input type="text" placeholder="Felhasználónév" required>
-            <input type="email" placeholder="E-mail cím" required>
-            <input type="password" placeholder="Jelszó" required>
-            <button type="submit" class="gomb teljes_szelesseg">Regisztráció</button>
+        <form id="register_form" style="display: none">
+          <input
+            type="text"
+            id="reg_username"
+            placeholder="Felhasználónév"
+            required
+          />
+          <input
+            type="email"
+            id="reg_email"
+            placeholder="E-mail cím"
+            required
+          />
+          <input type="password" placeholder="Jelszó" required />
+          <button type="submit" class="btn full-width">Regisztráció</button>
         </form>
-    </div>
-    
-    <hr> <h3>Keresés</h3>
-    <p>Használd a szűrőinket...</p>
-    
-    <div style="border: 2px solid orange; padding: 10px; margin-top: 15px;">
-        <p><strong>AKCIÓ:</strong> Most minden jármű mellé ingyenes téli gumi szett jár!</p>
-    </div>
-</aside>
+
+        <div
+          id="json_output_container"
+          style="
+            display: none;
+            margin-top: 15px;
+            background: #333;
+            color: lime;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: auto;
+          "
+        >
+          <pre id="json_code_block"></pre>
+        </div>
+      </div>
+
+      <hr />
+      <h3>Keresés</h3>
+      <p>Használd a szűrőinket...</p>
+
+      <div style="border: 2px solid orange; padding: 10px; margin-top: 15px">
+        <p>
+          <strong>AKCIÓ:</strong> Most minden jármű mellé ingyenes téli gumi
+          szett jár!
+        </p>
+      </div>
+    </aside>
 
     <footer>
       <p>Copyright &copy; 2025 Autókereskedés</p>

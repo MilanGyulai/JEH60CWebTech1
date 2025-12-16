@@ -15,18 +15,16 @@
         border-bottom: 2px dashed #4caf50;
         padding-bottom: 5px;
       }
-  
-    header {
-      background-color: #f0f0f0;
-      padding: 10px 0;
-    }
-  
+      header {
+        background-color: #f0f0f0;
+        padding: 10px 0;
+      }
     </style>
   </head>
   <body>
     <header>
+      <button id="dark_mode_btn" title="Sötét mód váltása">🌙</button>
       <h1>Rólunk - Cégtörténetünk</h1>
-
       <nav>
         <ul>
           <li><a href="index.html">Kezdőlap</a></li>
@@ -42,60 +40,61 @@
       <section>
         <h2>Cégtörténet</h2>
         <p>
-          Autókereskedésünk
-          <span class="alapitas">2005-ben alakult</span> Miskolcon azzal a
-          céllal, hogy minőségi használt és új járműveket kínáljon partnereinek.
-          Több mint két évtizedes tapasztalatunk garantálja a
-          <span style="font-style: italic">szakértelmet</span>.
+          Autókereskedésünk <span class="alapitas">2005-ben alakult</span>...
         </p>
-        <div>
-          <p>
-            Jelenleg 15 fős csapattal és egy 2000 m²-es telephelyen várjuk
-            ügyfeleinket.
-          </p>
-        </div>
         <img src="../images/iroda.jpg" alt="Az iroda épülete" width="100%" />
-      </section>
-
-      <section>
-        <h2 id="misszionk">Küldetésünk és Értékeink</h2>
-        <p>
-          Küldetésünk, hogy a legmegfelelőbb autót találjuk meg vevőinknek,
-          biztosítva a teljes átláthatóságot és megbízhatóságot.
-        </p>
-        <ul>
-          <li>Megbízhatóság</li>
-          <li>Ügyfélközpontúság</li>
-          <li>Innováció</li>
-        </ul>
       </section>
     </article>
 
     <aside>
-          <div id="auth_doboz">
-        <div class="auth_fulek">
-            <button id="ful_login" class="aktiv_ful" type="button">Belépés</button>
-            <button id="ful_reg" type="button">Regisztráció</button>
+      <div id="auth_box">
+        <div class="auth_tabs">
+          <button id="tab_login" class="active-tab" type="button">
+            Belépés
+          </button>
+          <button id="tab_register" type="button">Regisztráció</button>
         </div>
 
         <form id="login_form">
-            <input type="text" placeholder="Felhasználónév" required>
-            <input type="password" placeholder="Jelszó" required>
-            <button type="submit" class="gomb teljes_szelesseg">Belépés</button>
+          <input type="text" placeholder="Felhasználónév" required />
+          <input type="password" placeholder="Jelszó" required />
+          <button type="submit" class="btn full-width">Belépés</button>
         </form>
 
-        <form id="reg_form" style="display: none;">
-            <input type="text" placeholder="Felhasználónév" required>
-            <input type="email" placeholder="E-mail cím" required>
-            <input type="password" placeholder="Jelszó" required>
-            <button type="submit" class="gomb teljes_szelesseg">Regisztráció</button>
+        <form id="register_form" style="display: none">
+          <input
+            type="text"
+            id="reg_username"
+            placeholder="Felhasználónév"
+            required
+          />
+          <input
+            type="email"
+            id="reg_email"
+            placeholder="E-mail cím"
+            required
+          />
+          <input type="password" placeholder="Jelszó" required />
+          <button type="submit" class="btn full-width">Regisztráció</button>
         </form>
-    </div>
+
+        <div
+          id="json_output_container"
+          style="
+            display: none;
+            margin-top: 15px;
+            background: #333;
+            color: lime;
+            padding: 10px;
+            border-radius: 5px;
+            overflow: auto;
+          "
+        >
+          <pre id="json_code_block"></pre>
+        </div>
+      </div>
       <h3>Elismerések</h3>
-      <p>
-        2020-ban elnyertük az Év Autókereskedője díjat a régióban.
-        <a href="rolunk.html#misszionk">Tudjon meg többet küldetésünkről!</a>
-      </p>
+      <p>2020-ban elnyertük az Év Autókereskedője díjat a régióban.</p>
     </aside>
 
     <footer>

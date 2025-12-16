@@ -1,212 +1,247 @@
 $(document).ready(function () {
 
-    let szerkesztettKartyaElem = null;
+    // === DARK MODE TOGGLE ===
+    $('#dark_mode_btn').click(function() {
+        $('body').toggleClass('dark-mode');
+        
+        if ($('body').hasClass('dark-mode')) {
+            $(this).text('☀️'); 
+        } else {
+            $(this).text('🌙'); 
+        }
+    });
 
-    // AUTÓK BEOLVASÁSA (AJAX)
-    function loadAutokCards() {
-        const $listaHelye = $('#json_lista_helye');
+    // Global variable to store the card element being edited
+    let editedCardElement = null;
 
-        if ($listaHelye.length) {
+    // =========================================================
+    // 1. LOAD CARS (AJAX)
+    // =========================================================
+    function loadCarCards() {
+        const $listContainer = $('#car_list_container'); 
+
+        if ($listContainer.length) {
             $.ajax({
                 url: '../json/autok.json',
                 method: 'GET',
                 dataType: 'json',
                 success: function (data) {
-                    $listaHelye.empty();
+                    $listContainer.empty();
 
-                    // Szépen formázva kiírjuk a JSON-t a fekete dobozba
-                    $('#json_kijelzo').text(JSON.stringify(data, null, 4));
+                    // Developer View: Display Raw JSON
+                    $('#json_display').text(JSON.stringify(data, null, 4));
 
-                    data.autok.forEach(function (auto) {
-                        const kartya = createAutoCard(auto);
-                        $listaHelye.append(kartya);
+                    // Iterate through cars (assuming JSON key is now 'cars')
+                    data.cars.forEach(function (car) {
+                        const card = createCarCard(car);
+                        $listContainer.append(card);
                     });
-                    $('.auto-kartya').css('opacity', 0).delay(200).animate({ opacity: 1 }, 1000);
+                    
+                    // Fade-in animation
+                    $('.car-card').css('opacity', 0).delay(200).animate({ opacity: 1 }, 1000); 
                 },
                 error: function (xhr, status, error) {
-                    $listaHelye.html('<p>Hiba történt az adatok betöltésekor: ' + status + '</p>');
+                    $listContainer.html('<p>Error loading data: ' + status + '</p>');
                 }
             });
         }
     }
 
-    function createAutoCard(auto) {
-        const adatString = JSON.stringify(auto).replace(/"/g, '&quot;');
+    // Helper function to create HTML card
+    function createCarCard(car) {
+        // Convert object to string for the button data attribute
+        const dataString = JSON.stringify(car).replace(/"/g, '&quot;');
 
-        return $('<div>', { class: 'auto-kartya' }).html(
-            '<div class="kartya-kep-kontener">' +
-            '<img src="' + auto.kep_url + '" alt="' + auto.marka + '" class="kartya-kep">' +
+        return $('<div>', { class: 'car-card' }).html(
+            '<div class="card-image-container">' +
+            '<img src="' + car.image_url + '" alt="' + car.brand + '" class="card-image">' + 
             '</div>' +
-            '<div class="kartya-tartalom">' +
-            '<h3>' + auto.marka + ' ' + auto.modell + '</h3>' +
-            '<p><strong>Évjárat:</strong> ' + auto.evjarat + '</p>' +
-            '<p><strong>Üzemanyag:</strong> ' + auto.uzemanyag + '</p>' +
-            '<p class="ar"><strong>Ár:</strong> ' + auto.ar.toLocaleString('hu-HU') + ' Ft</p>' +
-            `<button class="modositas-gomb gomb" data-auto='${adatString}'>Módosítás</button>` +
+            '<div class="card-content">' +
+            '<h3>' + car.brand + ' ' + car.model + '</h3>' +
+            '<p><strong>Year:</strong> ' + car.year + '</p>' +
+            '<p><strong>Fuel:</strong> ' + car.fuel + '</p>' +
+            '<p class="price"><strong>Price:</strong> ' + car.price.toLocaleString('hu-HU') + ' Ft</p>' +
+            `<button class="edit-btn btn" data-car='${dataString}'>Edit</button>` +
             '</div>'
         );
     }
 
-    loadAutokCards();
+    // Initial load call
+    loadCarCards();
 
 
-    $('#json_lista_helye').on('click', '.modositas-gomb', function () {
+    // =========================================================
+    // 2. EDIT BUTTON HANDLER
+    // =========================================================
+    $('#car_list_container').on('click', '.edit-btn', function () {
 
-        const autoAdat = $(this).data('auto');
+        const carData = $(this).data('car');
 
-        $('#uj_marka').val(autoAdat.marka);
-        $('#uj_modell').val(autoAdat.modell);
-        $('#uj_ar').val(autoAdat.ar);
+        // Fill form with data (IDs must match HTML)
+        $('#new_brand').val(carData.brand);
+        $('#new_model').val(carData.model);
+        $('#new_price').val(carData.price);
+        $('#new_fuel').val(carData.fuel); 
 
-        szerkesztettKartyaElem = $(this).closest('.auto-kartya');
+        // Store the card element reference
+        editedCardElement = $(this).closest('.car-card');
 
-        $('#hozzaad_gomb').text('Mentés (Módosítás)');
-        $('#hozzaad_gomb').css('background-color', '#007BFF');
+        // Update UI
+        $('#add_btn').text('Save Changes'); 
+        $('#add_btn').css('background-color', '#007BFF');
 
+        // Scroll to form
         $('html, body').animate({
-            scrollTop: $("#uj_auto_form").offset().top
+            scrollTop: $("#new_car_form").offset().top 
         }, 500);
 
-        alert("Szerkesztés mód! Az adatok betöltve az űrlapra. Módosítsd, majd kattints a Mentésre.");
+        alert("Edit mode active! Data loaded into the form.");
     });
 
 
-    $('#uj_auto_urlap').on('submit', function (e) {
+    // =========================================================
+    // 3. FORM SUBMIT (NEW CAR / EDIT CAR)
+    // =========================================================
+    $('#new_car_form').on('submit', function (e) {
         e.preventDefault();
 
-        // --- VALIDÁCIÓ (ELLENŐRZÉS) KEZDETE ---
-        let vanHiba = false;
-        let hibaUzenet = "Kérlek javítsd az alábbi hibákat:\n";
+        // --- VALIDATION START ---
+        let hasError = false; 
+        let errorMessage = "Please fix the following errors:\n";
 
-        // Előző hibajelzések törlése (hogy ne maradjon piros, ha már javítottad)
-        $('.hibas_mezo').removeClass('hibas_mezo');
+        // Reset previous error styles (Renamed Class)
+        $('.error-field').removeClass('error-field');
 
-        // Mezők kiválasztása
-        const $marka = $('#uj_marka');
-        const $modell = $('#uj_modell');
-        const $ar = $('#uj_ar');
-        const $uzemanyag = $('#uj_uzemanyag');
-        const fileInput = document.getElementById('uj_kep_fajl');
+        // Select inputs (Renamed IDs)
+        const $brand = $('#new_brand');
+        const $model = $('#new_model');
+        const $price = $('#new_price');
+        const $fuel = $('#new_fuel');
+        const fileInput = document.getElementById('new_image_file');
 
-        // 1. Márka ellenőrzés
-        if ($marka.val().trim() === "") {
-            $marka.addClass('hibas_mezo'); // Piros keret
-            vanHiba = true;
-            hibaUzenet += "- A Márka mező nem lehet üres!\n";
+        // 1. Brand validation
+        if ($brand.val().trim() === "") {
+            $brand.addClass('error-field');
+            hasError = true;
+            errorMessage += "- The Brand field cannot be empty!\n";
         }
 
-        // 2. Modell ellenőrzés
-        if ($modell.val().trim() === "") {
-            $modell.addClass('hibas_mezo');
-            vanHiba = true;
-            hibaUzenet += "- A Modell mező nem lehet üres!\n";
+        // 2. Model validation
+        if ($model.val().trim() === "") {
+            $model.addClass('error-field');
+            hasError = true;
+            errorMessage += "- The Model field cannot be empty!\n";
         }
 
-        // 3. Ár ellenőrzés
-        if ($ar.val() === "" || $ar.val() <= 0) {
-            $ar.addClass('hibas_mezo');
-            vanHiba = true;
-            hibaUzenet += "- Az Ár mező nem lehet üres vagy nulla!\n";
+        // 3. Price validation
+        if ($price.val() === "" || $price.val() <= 0) {
+            $price.addClass('error-field');
+            hasError = true;
+            errorMessage += "- The Price field cannot be empty or zero!\n";
         }
 
-        // 4. Kép ellenőrzés
-        if (!szerkesztettKartyaElem && fileInput.files.length === 0) {
-            $('#uj_kep_fajl').addClass('hibas_mezo');
-            vanHiba = true;
-            hibaUzenet += "- Új autóhoz kötelező képet feltölteni!\n";
+        // 4. Image validation (required only for new cars)
+        if (!editedCardElement && fileInput.files.length === 0) {
+            $('#new_image_file').addClass('error-field');
+            hasError = true;
+            errorMessage += "- An image is required for new cars!\n";
         }
 
-        // HA HIBA VAN: Szólunk és kilépünk (nem fut tovább a kód)
-        if (vanHiba) {
-            alert(hibaUzenet);
-            return; // ITT MEGÁLL A FÜGGVÉNY!
+        if (hasError) {
+            alert(errorMessage);
+            return; // Stop execution
         }
-        // --- VALIDÁCIÓ VÉGE ---
+        // --- VALIDATION END ---
 
 
-        // HA MINDEN OKÉ, AKKOR FOLYTATJUK A MENTÉST:
-
-        let autoAdat = {
-            id: szerkesztettKartyaElem ? 0 : $('.auto-kartya').length + 1,
-            marka: $marka.val(),
-            modell: $modell.val(),
-            evjarat: new Date().getFullYear(),
-            uzemanyag: $uzemanyag.val(),
-            ar: parseInt($ar.val()),
-            kep_url: ''
+        // Prepare Data Object (English Keys)
+        let carData = {
+            id: editedCardElement ? 0 : $('.car-card').length + 1,
+            brand: $brand.val(),
+            model: $model.val(),
+            year: new Date().getFullYear(),
+            fuel: $fuel.val(),
+            price: parseInt($price.val()),
+            image_url: ''
         };
 
         const file = fileInput.files[0];
 
-        const feldolgozasBefejezese = function (veglegesKepUrl) {
-            autoAdat.kep_url = veglegesKepUrl;
-            const ujKartyaHTML = createAutoCard(autoAdat);
+        // Callback function to finish processing
+        const finishProcessing = function (finalImageUrl) {
+            carData.image_url = finalImageUrl;
+            const newCardHTML = createCarCard(carData);
 
-            if (szerkesztettKartyaElem) {
-                szerkesztettKartyaElem.replaceWith(ujKartyaHTML);
-                alert('Siker! Az autó adatai módosítva lettek.');
+            if (editedCardElement) {
+                // EDIT MODE
+                editedCardElement.replaceWith(newCardHTML);
+                alert('Success! Car data updated.');
 
-                szerkesztettKartyaElem = null;
-                $('#hozzaad_gomb').text('Kártya Hozzáadása');
-                $('#hozzaad_gomb').css('background-color', '#4CAF50');
+                editedCardElement = null;
+                $('#add_btn').text('Add Car');
+                $('#add_btn').css('background-color', '#4CAF50');
             } else {
-                const $listaHelye = $('#json_lista_helye');
-                ujKartyaHTML.css({ opacity: 0, marginTop: '-50px' });
-                $listaHelye.prepend(ujKartyaHTML);
-                ujKartyaHTML.animate({ opacity: 1, marginTop: '0px' }, 500);
-                alert('Siker! Az új kártya létrejött.');
+                // NEW MODE
+                const $listContainer = $('#car_list_container');
+                newCardHTML.css({ opacity: 0, marginTop: '-50px' });
+                $listContainer.prepend(newCardHTML);
+                newCardHTML.animate({ opacity: 1, marginTop: '0px' }, 500);
+                alert('Success! New card created.');
             }
 
-            $('#uj_auto_urlap')[0].reset();
+            // Reset form
+            $('#new_car_form')[0].reset();
         };
 
+        // Image File Reader logic
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
-                feldolgozasBefejezese(e.target.result);
+                finishProcessing(e.target.result);
             };
             reader.readAsDataURL(file);
         } else {
-            if (szerkesztettKartyaElem) {
-                const regiKepSrc = szerkesztettKartyaElem.find('.kartya-kep').attr('src');
-                feldolgozasBefejezese(regiKepSrc);
+            if (editedCardElement) {
+                const oldImageSrc = editedCardElement.find('.card-image').attr('src');
+                finishProcessing(oldImageSrc);
             } else {
-                feldolgozasBefejezese('images/placeholder.jpg');
+                finishProcessing('images/placeholder.jpg');
             }
         }
     });
+
+
     // =========================================================
-    // 3 LEGOLCSÓBB AUTÓ BETÖLTÉSE A TÁBLÁZATBA
+    // 4. TOP 3 CHEAPEST CARS
     // =========================================================
     function loadTop3Cheapest() {
-        const $tbody = $('#kiemelt_body');
+        const $tbody = $('#highlighted_body'); 
 
         if ($tbody.length) {
             $.ajax({
-                url: '../json/autok.json',
+                url: '../json/autok.json', 
                 method: 'GET',
                 dataType: 'json',
                 success: function (data) {
-                    //Másolat készítése a tömbről (hogy ne rontsuk el az eredeti sorrendet a kártyáknál)
-                    let autokRendezve = data.autok.slice();
+                    let sortedCars = data.cars.slice(); // 'cars' key
 
-                    autokRendezve.sort(function (a, b) {
-                        return a.ar - b.ar;
+                    sortedCars.sort(function (a, b) {
+                        return a.price - b.price; // 'price' key
                     });
 
-                    let top3 = autokRendezve.slice(0, 3);
+                    let top3 = sortedCars.slice(0, 3);
 
-                    $tbody.empty(); // Biztonság kedvéért kiürítjük
+                    $tbody.empty();
 
-                    top3.forEach(function (auto) {
-                        let sor = '<tr>' +
-                            '<td>' + auto.marka + '</td>' +
-                            '<td>' + auto.modell + '</td>' +
-                            '<td>' + auto.evjarat + '</td>' +
-                            '<td>' + auto.ar.toLocaleString('hu-HU') + '</td>' +
+                    top3.forEach(function (car) {
+                        let row = '<tr>' +
+                            '<td>' + car.brand + '</td>' +
+                            '<td>' + car.model + '</td>' +
+                            '<td>' + car.year + '</td>' +
+                            '<td>' + car.price.toLocaleString('hu-HU') + '</td>' +
                             '</tr>';
 
-                        $tbody.append(sor);
+                        $tbody.append(row);
                     });
                 },
             });
@@ -215,42 +250,124 @@ $(document).ready(function () {
 
     loadTop3Cheapest();
 
-    $(document).on('click', '#ful_login', function () {
-        $('#ful_login').addClass('aktiv_ful');
-        $('#ful_reg').removeClass('aktiv_ful');
 
-        $('#reg_form').hide();
+    // =========================================================
+    // 5. LOGIN / REGISTRATION TABS
+    // =========================================================
+
+    // Tab switching (Login View)
+    $(document).on('click', '#tab_login', function () { 
+        $('#tab_login').addClass('active-tab'); 
+        $('#tab_register').removeClass('active-tab');
+        $('#register_form').hide();
         $('#login_form').fadeIn();
+        $('#json_output_container').hide(); 
     });
 
-    $(document).on('click', '#ful_reg', function () {
-        $('#ful_reg').addClass('aktiv_ful');
-        $('#ful_login').removeClass('aktiv_ful');
-
+    // Tab switching (Registration View)
+    $(document).on('click', '#tab_register', function () { 
+        $('#tab_register').addClass('active-tab');
+        $('#tab_login').removeClass('active-tab');
         $('#login_form').hide();
-        $('#reg_form').fadeIn();
+        $('#register_form').fadeIn();
+        $('#json_output_container').hide();
+    });
+
+    // --- JSON GENERATION (Registration Submit) ---
+    $('#register_form').on('submit', function (e) {
+        e.preventDefault();
+
+        // Create Data Object
+        let registrationData = {
+            username: $('#reg_username').val(), 
+            email: $('#reg_email').val(),       
+            password_hash: '********',
+            date: new Date().toISOString()
+        };
+
+        let jsonOutput = JSON.stringify(registrationData, null, 4);
+
+        // Display JSON on screen
+        $('#json_code_block').text(jsonOutput); 
+        $('#json_output_container').fadeIn();
+
+        alert('Registration successful! JSON data displayed below.');
+        
+        $(this)[0].reset();
+    });
+
+    // Login simulation
+    $('#login_form').on('submit', function(e) {
+        e.preventDefault();
+        alert("Login successful (Simulation).");
+        $(this)[0].reset();
     });
 
 
     // =========================================================
-    // YOUTUBE VIDEÓ VEZÉRLÉS (API használatával)
+    // 6. CONTACT FORM VALIDATION
     // =========================================================
+    $('#contact_form').on('submit', function (e) { 
+        e.preventDefault();
+        let isValid = true;
+        const $form = $(this);
+        const $errorContainer = $('#error_message_box'); 
+        
+        // Reset UI
+        $errorContainer.hide().empty();
+        $('.error-field').removeClass('error-field'); 
 
-    // Ez a változó tárolja majd a lejátszót
+        const $name = $('#contact_name'); 
+        const $email = $('#contact_email');
+        const $message = $('#contact_message');
+
+        // Name Validation
+        if ($name.val().length < 2) {
+            isValid = false;
+            $name.addClass('error-field');
+            $errorContainer.append('<p>The name is too short.</p>');
+        }
+
+        // Email Validation
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($email.val())) {
+            isValid = false;
+            $email.addClass('error-field');
+            $errorContainer.append('<p>Invalid email format.</p>');
+        }
+
+        // Message Validation
+        if ($message.val().length < 10) {
+            isValid = false;
+            $message.addClass('error-field');
+            $errorContainer.append('<p>The message is too short.</p>');
+        }
+
+        if (isValid) {
+            alert('Message sent successfully!');
+            $form.get(0).reset();
+        } else {
+            $errorContainer.show();
+            // Shake animation
+            $form.animate({ left: '-10px' }, 50).animate({ left: '10px' }, 50).animate({ left: '0px' }, 50);
+        }
+    });
+
+
+    // =========================================================
+    // 7. YOUTUBE API VIDEO CONTROL
+    // =========================================================
     var player;
 
-    // YouTube API kód betöltése (ez kötelező, hogy működjön)
     var tag = document.createElement('script');
     tag.src = "https://www.youtube.com/iframe_api";
     var firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-    // Ez a függvény fut le automatikusan, amikor a YouTube API betöltött
     window.onYouTubeIframeAPIReady = function () {
         player = new YT.Player('player', {
             height: '360',
             width: '640',
-            videoId: 'Yfsm_62odgY', // <--- videó ID-je
+            videoId: 'Yfsm_62odgY',
             playerVars: {
                 'playsinline': 1
             },
@@ -260,31 +377,24 @@ $(document).ready(function () {
         });
     };
 
-    // Amikor a videó készen áll, bekapcsoljuk a gombokat
     function onPlayerReady(event) {
-
-        // Lejátszás gomb
         $('#ytPlayBtn').on('click', function () {
             player.playVideo();
         });
 
-        // Szünet gomb
         $('#ytPauseBtn').on('click', function () {
             player.pauseVideo();
         });
 
-        // Némítás gomb (váltogat)
         $('#ytMuteBtn').on('click', function () {
             if (player.isMuted()) {
                 player.unMute();
-                $(this).text("🔇 Némítás");
+                $(this).text("🔇 Unmute");
             } else {
                 player.mute();
-                $(this).text("🔊 Hang");
+                $(this).text("🔊 Mute");
             }
         });
     }
 
 });
-
-

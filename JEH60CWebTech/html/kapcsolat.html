@@ -21,6 +21,8 @@
   </head>
   <body>
     <header>
+      <button id="dark_mode_btn" title="Sötét mód váltása">🌙</button>
+
       <h1>Kapcsolatfelvétel</h1>
 
       <nav>
@@ -43,12 +45,12 @@
         </p>
 
         <div id="urlap_container">
-          <form id="kapcsolat_urlap">
-            <label for="nev">Név:</label>
-            <input type="text" id="nev" name="nev" required />
+          <form id="contact_form">
+            <label for="contact_name">Név:</label>
+            <input type="text" id="contact_name" name="nev" required />
 
-            <label for="email">E-mail cím:</label>
-            <input type="email" id="email" name="email" required />
+            <label for="contact_email">E-mail cím:</label>
+            <input type="email" id="contact_email" name="email" required />
 
             <label for="tema">Téma kiválasztása:</label>
             <input list="temak" id="tema" name="tema" />
@@ -103,15 +105,20 @@
               value="#000000"
             />
 
-            <label for="uzenet">Üzeneted:</label>
-            <textarea id="uzenet" name="uzenet" rows="5" required></textarea>
+            <label for="contact_message">Üzeneted:</label>
+            <textarea
+              id="contact_message"
+              name="uzenet"
+              rows="5"
+              required
+            ></textarea>
 
-            <button type="submit" id="kuldes_gomb" class="gomb">
+            <button type="submit" id="submit_btn" class="btn">
               Üzenet küldése
             </button>
-            <button type="reset" class="gomb">Űrlap törlése</button>
+            <button type="reset" class="btn">Űrlap törlése</button>
 
-            <div id="hiba_uzenet"></div>
+            <div id="error_message_box"></div>
           </form>
         </div>
       </section>

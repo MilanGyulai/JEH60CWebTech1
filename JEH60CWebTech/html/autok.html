@@ -15,7 +15,7 @@
   <body>
     <header>
       <h1>Aktuális Autó Kínálatunk</h1>
-
+      <button id="dark_mode_btn" title="Sötét mód váltása">🌙</button>
       <nav>
         <ul>
           <li><a href="index.html">Kezdőlap</a></li>
@@ -32,7 +32,7 @@
         <h2>Kiemelt Ajánlatok (HTML Táblázat)</h2>
         <p>Tekintse meg a legnépszerűbb modelljeinket az alábbi táblázatban.</p>
 
-        <table id="kiemelt_tablazat" class="autolista">
+        <table id="highlighted_table" class="car-list-table">
           <thead>
             <tr>
               <th>Márka</th>
@@ -41,7 +41,7 @@
               <th>Ár (Ft)</th>
             </tr>
           </thead>
-          <tbody id="kiemelt_body"></tbody>
+          <tbody id="highlighted_body"></tbody>
           <tfoot>
             <tr>
               <td colspan="4">
@@ -52,25 +52,25 @@
         </table>
       </section>
 
-      <section id="uj_auto_form">
+      <section id="new_car_section">
         <h2>Adj Hozzá Új Autót (Kártya Létrehozás)</h2>
-        <form id="uj_auto_urlap">
-          <label for="uj_marka">Márka:</label>
-          <input type="text" id="uj_marka" required />
+        <form id="new_car_form">
+          <label for="new_brand">Márka:</label>
+          <input type="text" id="new_brand" required />
 
-          <label for="uj_modell">Modell:</label>
-          <input type="text" id="uj_modell" required />
+          <label for="new_model">Modell:</label>
+          <input type="text" id="new_model" required />
 
-          <label for="uj_ar">Ár (Ft):</label>
-          <input type="number" id="uj_ar" required />
+          <label for="new_price">Ár (Ft):</label>
+          <input type="number" id="new_price" required />
 
-          <label for="uj_uzemanyag">Üzemanyag:</label>
-          <input type="text" id="uj_uzemanyag" required />
+          <label for="new_fuel">Üzemanyag:</label>
+          <input type="text" id="new_fuel" required />
 
-          <label for="uj_kep_fajl">Autó képe (Tallózás):</label>
-          <input type="file" id="uj_kep_fajl" accept="image/*" />
+          <label for="new_image_file">Autó képe (Tallózás):</label>
+          <input type="file" id="new_image_file" accept="image/*" />
 
-          <button type="submit" class="gomb" id="hozzaad_gomb">
+          <button type="submit" class="btn" id="add_btn">
             Kártya Hozzáadása
           </button>
         </form>
@@ -78,55 +78,61 @@
 
       <section>
         <h2>Teljes Készlet (AJAX / JSON adatok)</h2>
-        <div id="json_lista_helye" class="kartya-kontener"></div>
+        <div id="car_list_container" class="card-container"></div>
       </section>
     </article>
 
-   
-
     <aside>
-      <div id="auth_doboz">
-        <div class="auth_fulek">
-          <button id="ful_login" class="aktiv_ful" type="button">
+      <div id="auth_box">
+        <div class="auth_tabs">
+          <button id="tab_login" class="active-tab" type="button">
             Belépés
           </button>
-          <button id="ful_reg" type="button">Regisztráció</button>
+          <button id="tab_register" type="button">Regisztráció</button>
         </div>
 
         <form id="login_form">
           <input type="text" placeholder="Felhasználónév" required />
           <input type="password" placeholder="Jelszó" required />
-          <button type="submit" class="gomb teljes_szelesseg">Belépés</button>
+          <button type="submit" class="btn full-width">Belépés</button>
         </form>
 
-        <form id="reg_form" style="display: none">
-          <input type="text" placeholder="Felhasználónév" required />
-          <input type="email" placeholder="E-mail cím" required />
+        <form id="register_form" style="display: none">
+          <input type="text" id="reg_username" placeholder="Felhasználónév" required />
+          <input type="email" id="reg_email" placeholder="E-mail cím" required />
           <input type="password" placeholder="Jelszó" required />
-          <button type="submit" class="gomb teljes_szelesseg">
+          <button type="submit" class="btn full-width">
             Regisztráció
           </button>
         </form>
+        
+        <div id="json_output_container" style="display: none; margin-top: 15px; background: #333; color: lime; padding: 10px; border-radius: 5px; overflow: auto;">
+            <pre id="json_code_block"></pre>
+        </div>
       </div>
       <h3>Keresés</h3>
       <p>Használd a szűrőinket a tökéletes autó megtalálásához!</p>
-      <p>Aktuálisan elérhető darabszám: <span id="darabszam">...</span></p>
     </aside>
-     <section style="margin-top: 50px; border-top: 2px dashed #ccc; padding-top: 20px;">
-            <h3>⚙️ Fejlesztői Adatok (JSON Forráskód)</h3>
-            <p>Az alábbi doboz mutatja a szerverről érkező nyers adatokat:</p>
-            
-            <pre id="json_kijelzo" style="
-                background-color: #2d2d2d; 
-                color: #50fa7b; 
-                padding: 15px; 
-                border-radius: 6px; 
-                overflow-x: auto; 
-                font-family: monospace; 
-                font-size: 14px;
-                max-height: 400px;
-            ">Betöltés...</pre>
-        </section>
+    <section>
+      <h3>⚙️ Fejlesztői Adatok (JSON Forráskód)</h3>
+      <p>Az alábbi doboz mutatja a szerverről érkező nyers adatokat:</p>
+
+      <pre
+        id="json_display"
+        style="
+          background-color: #2d2d2d;
+          color: #50fa7b;
+          padding: 15px;
+          border-radius: 6px;
+          overflow-x: auto;
+          font-family: monospace;
+          font-size: 14px;
+          max-height: 400px;
+        "
+      >
+Betöltés...</pre
+      >
+    </section>
 
     <footer>
       <p>Copyright &copy; 2025 Autókereskedés</p>
